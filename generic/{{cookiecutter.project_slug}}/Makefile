@@ -17,6 +17,17 @@ lint:
 format:
 	@pre-commit run --all-files ruff-format
 
+{% if cookiecutter.project_base_deps == "django/psycopg" -%}
+makemigrations:
+	@python manage.py makemigrations
+
+migrate: makemigrations:
+	@python manage.py migrate
+
+runserver:
+	@python manage.py runserver
+{% endif -%}
+
 ## This help screen
 help:
 	@printf "Available targets:\n\n"
