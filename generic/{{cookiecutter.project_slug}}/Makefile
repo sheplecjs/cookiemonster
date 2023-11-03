@@ -1,4 +1,4 @@
-.DEFAULT_GOAL := run_dev
+.DEFAULT_GOAL := help
 
 RED = \033[0;31m
 GREEN = \033[0;32m
@@ -6,17 +6,29 @@ YELLOW = \033[1;33m
 BLUE = \033[0;34m
 NO_COLOR = \033[0m
 
-CONTAINER_ENGINE ?= {{cookiecutter.dev_container_engine}}
-PROJECT_NAME ?= {{cookiecutter.project_name|lower}}
+CONTAINER_ENGINE ?= podman
+PROJECT_NAME ?= htmx
 
-run_dev:
-		@echo "${YELLOW} Rebuilding dev container:${NO_COLOR}"
-		@${CONTAINER_ENGINE} build -t ${PROJECT_NAME} .
-		@${CONTAINER_ENGINE} run -it -v ${PWD}:/${PROJECT_NAME} --rm ${PROJECT_NAME} bash
+## Lint all files with ruff
+lint:
+	@pre-commit run --all-files ruff
 
-initial_setup:
-		@git init
-		@git add .
-		@git commit -m "Initial commit"
-		@pre-commit install
-		@pre-commit run --all-files
+## Format all files with ruff
+format:
+	@pre-commit run --all-files ruff-format
+
+## This help screen
+help:
+	@printf "Available targets:\n\n"
+	@awk '/^[a-zA-Z\-\_0-9%:\\]+/ { \
+		helpMessage = match(lastLine, /^## (.*)/); \
+		if (helpMessage) { \
+		helpCommand = $$1; \
+		helpMessage = substr(lastLine, RSTART + 3, RLENGTH); \
+	gsub("\\\\", "", helpCommand); \
+	gsub(":+$$", "", helpCommand); \
+		printf "  \x1b[32;01m%-35s\x1b[0m %s\n", helpCommand, helpMessage; \
+		} \
+	} \
+	{ lastLine = $$0 }' $(MAKEFILE_LIST) | sort -u
+	@printf "\n"
