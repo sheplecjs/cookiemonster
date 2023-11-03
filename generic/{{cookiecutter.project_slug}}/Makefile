@@ -9,6 +9,9 @@ NO_COLOR = \033[0m
 CONTAINER_ENGINE ?= podman
 PROJECT_NAME ?= htmx
 
+## Run all code quality rules
+all: lint format
+
 ## Lint all files with ruff
 lint:
 	@pre-commit run --all-files ruff
@@ -18,12 +21,15 @@ format:
 	@pre-commit run --all-files ruff-format
 
 {% if cookiecutter.project_base_deps == "django/psycopg" -%}
+## Create DB migrations
 makemigrations:
 	@python manage.py makemigrations
 
+## Create DB migrations and migrate
 migrate: makemigrations:
 	@python manage.py migrate
 
+## Run dev server
 runserver:
 	@python manage.py runserver
 {% endif -%}
