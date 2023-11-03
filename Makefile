@@ -1,4 +1,4 @@
-.DEFAULT_GOAL := run_dev
+.DEFAULT_GOAL := help
 
 RED = \033[0;31m
 GREEN = \033[0;32m
@@ -9,7 +9,18 @@ NO_COLOR = \033[0m
 CONTAINER_ENGINE ?= podman
 PROJECT_NAME ?= cookiemonster
 
-run_dev:
-		@echo "${YELLOW} Rebuilding dev container:${NO_COLOR}"
-		@${CONTAINER_ENGINE} build -t ${PROJECT_NAME} .
-		@${CONTAINER_ENGINE} run -it -v ${PWD}:/${PROJECT_NAME} --rm ${PROJECT_NAME} bash
+## This help screen
+help:
+	@printf "Available targets:\n\n"
+	@awk '/^[a-zA-Z\-\_0-9%:\\]+/ { \
+		helpMessage = match(lastLine, /^## (.*)/); \
+		if (helpMessage) { \
+		helpCommand = $$1; \
+		helpMessage = substr(lastLine, RSTART + 3, RLENGTH); \
+	gsub("\\\\", "", helpCommand); \
+	gsub(":+$$", "", helpCommand); \
+		printf "  \x1b[32;01m%-35s\x1b[0m %s\n", helpCommand, helpMessage; \
+		} \
+	} \
+	{ lastLine = $$0 }' $(MAKEFILE_LIST) | sort -u
+	@printf "\n"
