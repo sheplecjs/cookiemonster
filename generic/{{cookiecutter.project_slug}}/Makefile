@@ -25,13 +25,13 @@ makemigrations:
 	@python manage.py makemigrations
 
 ## Create DB migrations and migrate
-migrate: makemigrations:
+migrate: makemigrations
 	@python manage.py migrate
 
 ## Run dev server
 runserver:
 	@python manage.py runserver
-{% endif -%}
+{%- endif %}
 
 ## This help screen
 help:
