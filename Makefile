@@ -6,7 +6,6 @@ YELLOW = \033[1;33m
 BLUE = \033[0;34m
 NO_COLOR = \033[0m
 
-CONTAINER_ENGINE ?= podman
 PROJECT_NAME ?= cookiemonster
 
 ## This help screen
