@@ -1,6 +1,9 @@
 FROM {{cookiecutter.project_base_image}}
 WORKDIR /{{cookiecutter.project_name|lower}}
 
+RUN apt-get update
+RUN apt-get install -y tree
+
 {% if cookiecutter.project_base_deps == "django/psycopg" -%}
 EXPOSE 8000
 {% elif cookiecutter.project_base_deps == "sam" -%}
