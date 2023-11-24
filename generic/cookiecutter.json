@@ -5,7 +5,7 @@
     "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
     "project_short_description": "Python Boilerplate contains all the boilerplate you need to create a Python package.",
     "project_base_image": ["python:3.11.4", "python:3.12.0"],
-    "project_base_deps": ["django/psycopg", "none"],
+    "project_base_deps": ["django/psycopg", "sam", "none"],
     "dev_container_engine": ["podman", "docker"],
     "version": "0.1.0",
     "open_source_license": ["MIT license", "BSD license", "ISC license", "Apache Software License 2.0", "GNU General Public License v3", "Not open source"]

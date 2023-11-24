@@ -10,3 +10,10 @@ repos:
     hooks:
       - id: ruff
       - id: ruff-format
+{% if cookiecutter.project_base_deps == "sam" -%}
+  - repo: https://github.com/awslabs/cfn-python-lint
+    rev: v0.15.0
+    hooks:
+      - id: cfn-python-lint
+        files: templates/.*\.(json|yml|yaml)$
+{% endif %}
