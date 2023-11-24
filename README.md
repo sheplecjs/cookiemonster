@@ -11,7 +11,7 @@ This is an isolated cookiecutter environment for generating pre-configured direc
 ├── Dockerfile
 ├── Makefile
 ├── README.md
-├── generic [A generic python project]
+├── generic
 │   ├── cookiecutter.json
 │   └── {{cookiecutter.project_slug}}
 │       ├── Dockerfile
