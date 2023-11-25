@@ -2,4 +2,4 @@ pre-commit
 {% if cookiecutter.project_base_deps == "django/psycopg" -%}
 django
 psycopg
-{% endif -%}
+{% endif %}
