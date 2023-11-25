@@ -1,0 +1,12 @@
+{
+    "full_name": "Colin Shepley",
+    "email": "example@example.com",
+    "project_name": "Example",
+    "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
+    "project_short_description": "A mixed pyton-rust project using maturin.",
+    "project_base_image": ["python:3.11.4", "python:3.12.0"],
+    "dev_container_engine": ["podman", "docker"],
+    "version": "0.1.0",
+    "open_source_license": ["MIT license", "BSD license", "ISC license", "Apache Software License 2.0", "GNU General Public License v3", "Not open source"]
+  }
+  
