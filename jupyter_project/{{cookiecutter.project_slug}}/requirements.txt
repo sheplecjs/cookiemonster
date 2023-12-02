@@ -1,2 +1,4 @@
 pre-commit
 jupyterlab
+pandas
+ucimlrepo
