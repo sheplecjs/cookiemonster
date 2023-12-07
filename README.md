@@ -13,3 +13,4 @@ This is an isolated cookiecutter environment for generating pre-configured proje
 + **generic**: a basic python project with pre-commit hooks, a devcontainer, and ruff linting/formatting
 + **rustic**: a mixed rust-python project using maturin
 + **jupyter_project**: a local jupyterlab server with options for pre-configuring data sources 
++ **rocket_project**: a basic rocket web appliaction
