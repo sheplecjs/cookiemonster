@@ -4,8 +4,12 @@
 		"context": "..",
 		"dockerfile": "../Dockerfile"
 	},
+	// insist that git trust the ownership of the container workspace
+	"postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
 	"mounts": [
-		"type=bind,source=${localEnv:HOME}/${localEnv:USER}/.ssh,target=/root/.ssh,readonly",
-		"type=bind,source=${localEnv:HOME}${localEnv:USERPROFILE}/.aws,target=/root/.aws,consistency=cached"
+		"type=bind,source=${localEnv:HOME}/.ssh,target=/root/.ssh,readonly"
+		
+		// uncomment to mount aws creds from local env
+		// "type=bind,source=${localEnv:HOME}${localEnv:USERPROFILE}/.aws,target=/root/.aws,consistency=cached"
 	  ]
 }
