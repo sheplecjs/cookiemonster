@@ -1,5 +1,0 @@
-{% if cookiecutter.project_base_deps == "django/psycopg" -%}
-django
-psycopg
-django-extensions
-{% endif %}
