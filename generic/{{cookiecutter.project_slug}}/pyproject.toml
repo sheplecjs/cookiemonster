@@ -36,3 +36,21 @@ line-length = 100
 quote-style = "double"
 indent-style = "tab"
 docstring-code-format = true
+
+[tool.tox]
+legacy_tox_ini = """
+    [tox]
+    min_version = 4.0
+    skipsdist = true
+
+    [testenv]
+    deps = pip-tools
+        pytest
+        behave
+    commands_pre = pip-sync requirements.txt
+    setenv =
+        PYTHONPATH=src
+    commands =
+    pytest --cov=src tests --hypothesis-show-statistics
+    behave tests
+"""
