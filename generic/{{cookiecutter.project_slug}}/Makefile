@@ -27,6 +27,14 @@ runserver:
 	@python manage.py runserver
 {%- endif %}
 
+## Update deps txt files
+update_deps:
+	@pip-compile --extra test -o requirements.txt
+	@pip-compile --all-extras -o requirements-dev.txt
+
+test:
+	@tox
+
 ## This help screen
 help:
 	@printf "Available targets:\n\n"
